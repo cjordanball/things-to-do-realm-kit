@@ -30,7 +30,14 @@
                             <outlet property="delegate" destination="P73-KE-DY7" id="Sfq-eV-LBR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="List It!" id="Zoo-0V-Puy"/>
+                    <navigationItem key="navigationItem" title="List It!" id="Zoo-0V-Puy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JKC-sc-w5X">
+                            <color key="tintColor" systemColor="systemGray2Color"/>
+                            <connections>
+                                <action selector="addItemPressed:" destination="P73-KE-DY7" id="rGa-5d-fJ2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bzg-Ap-qfm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

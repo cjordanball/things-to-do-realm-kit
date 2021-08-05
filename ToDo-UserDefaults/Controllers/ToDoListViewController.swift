@@ -13,8 +13,11 @@ class ToDoListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none;
     }
+    
+    
+    
+    //MARK: - TableView Datasource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count;
@@ -25,5 +28,13 @@ class ToDoListViewController: UITableViewController {
         cell.textLabel?.text = itemArray[indexPath.row];
         return cell;
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true);
+        tableView.cellForRow(at: indexPath)?.accessoryType =
+            tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark ? .none : .checkmark;
+    };
+    
+    
 }
 

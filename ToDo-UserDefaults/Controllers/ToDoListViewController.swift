@@ -15,7 +15,7 @@ class ToDoListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let items = defaults.array(forKey: "itemsList") as! [String]? {
+        if let items = defaults.stringArray(forKey: "itemsList") {
             itemArray = items;
         };
         print("Starting");

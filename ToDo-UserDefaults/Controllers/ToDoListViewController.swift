@@ -10,9 +10,15 @@ import UIKit
 class ToDoListViewController: UITableViewController {
     
     var itemArray = ["Balance Checkbook", "Pay Bills", "File Taxes"];
+    
+    let defaults = UserDefaults.standard;
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let items = defaults.array(forKey: "itemsList") as! [String]? {
+            itemArray = items;
+        };
+        print("Starting");
     }
     
     
@@ -45,6 +51,7 @@ class ToDoListViewController: UITableViewController {
                     self.itemArray.append(myVar);
                 }
             }
+            self.defaults.set(self.itemArray, forKey: "itemsList");
             self.tableView.reloadData()
         }
         

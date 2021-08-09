@@ -9,16 +9,14 @@ import UIKit
 
 class ToDoListViewController: UITableViewController {
     
-    var itemArray = ["Balance Checkbook", "Pay Bills", "File Taxes"];
+    var itemArray = Array<Item>();
     
-    let defaults = UserDefaults.standard;
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist");
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        if let items = defaults.stringArray(forKey: "itemsList") {
-            itemArray = items;
-        };
-        print("Starting");
+        super.viewDidLoad();
+
+        loadItems();
     }
     
     
@@ -31,14 +29,15 @@ class ToDoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath);
-        cell.textLabel?.text = itemArray[indexPath.row];
+        cell.textLabel?.text = itemArray[indexPath.row].title;
+        cell.accessoryType = itemArray[indexPath.row].done == true ? .checkmark : .none;
         return cell;
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
-        tableView.cellForRow(at: indexPath)?.accessoryType =
-            tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark ? .none : .checkmark;
+        itemArray[indexPath.row].done = !itemArray[indexPath.row].done;
+        saveItems();
     };
     
     @IBAction func addItemPressed(_ sender: UIBarButtonItem) {
@@ -48,11 +47,10 @@ class ToDoListViewController: UITableViewController {
             // what happens on clicke of button
             if let myVar = alert.textFields![0].text {
                 if myVar != "" {
-                    self.itemArray.append(myVar);
+                    self.itemArray.append(Item(title: myVar));
                 }
             }
-            self.defaults.set(self.itemArray, forKey: "itemsList");
-            self.tableView.reloadData()
+            self.saveItems()
         }
         
         alert.addTextField { alertTextField in
@@ -61,6 +59,28 @@ class ToDoListViewController: UITableViewController {
         
         alert.addAction(action);
         present(alert, animated: true, completion: nil);
+    }
+    
+    func saveItems() {
+        let encoder = PropertyListEncoder();
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("Having a bad day!");
+        }
+        tableView.reloadData()
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder();
+            do {
+                itemArray = try decoder.decode([Item].self, from: data);
+            } catch {
+                print("ERR: \(error)");
+            }
+        }
     }
     
 }

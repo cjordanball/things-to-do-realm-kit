@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/cjb3/Dropbox/Courses/iOS &amp; Swift/Course Apps/ToDo-Realm/ToDo-Realm.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>

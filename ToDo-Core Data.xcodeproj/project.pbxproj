@@ -13,11 +13,12 @@
 		A90F552F26BB856700D3FBA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90F552D26BB856700D3FBA1 /* Main.storyboard */; };
 		A90F553126BB856800D3FBA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A90F553026BB856800D3FBA1 /* Assets.xcassets */; };
 		A90F553426BB856800D3FBA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A90F553226BB856800D3FBA1 /* LaunchScreen.storyboard */; };
-		A9FCBD1426BDD50F00A9F669 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FCBD1326BDD50F00A9F669 /* Item.swift */; };
+		A9B811EE26C5CF83006D89AB /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B811ED26C5CF83006D89AB /* CategoryViewController.swift */; };
+		A9FCBD1B26C1DFC100A9F669 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A9FCBD1926C1DFC100A9F669 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A90F552426BB856700D3FBA1 /* ToDo-UserDefaults.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo-UserDefaults.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A90F552426BB856700D3FBA1 /* ToDo-Core Data.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo-Core Data.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A90F552726BB856700D3FBA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A90F552926BB856700D3FBA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A90F552B26BB856700D3FBA1 /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
@@ -25,7 +26,8 @@
 		A90F553026BB856800D3FBA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A90F553326BB856800D3FBA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A90F553526BB856800D3FBA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9FCBD1326BDD50F00A9F669 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		A9B811ED26C5CF83006D89AB /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		A9FCBD1A26C1DFC100A9F669 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +44,7 @@
 		A90F551B26BB856700D3FBA1 = {
 			isa = PBXGroup;
 			children = (
-				A90F552626BB856700D3FBA1 /* ToDo-UserDefaults */,
+				A90F552626BB856700D3FBA1 /* ToDo-Core Data */,
 				A90F552526BB856700D3FBA1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,12 +52,12 @@
 		A90F552526BB856700D3FBA1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A90F552426BB856700D3FBA1 /* ToDo-UserDefaults.app */,
+				A90F552426BB856700D3FBA1 /* ToDo-Core Data.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A90F552626BB856700D3FBA1 /* ToDo-UserDefaults */ = {
+		A90F552626BB856700D3FBA1 /* ToDo-Core Data */ = {
 			isa = PBXGroup;
 			children = (
 				A90F552726BB856700D3FBA1 /* AppDelegate.swift */,
@@ -66,12 +68,13 @@
 				A9FCBD1526BDD5C900A9F669 /* SupportFiles */,
 				A90F553526BB856800D3FBA1 /* Info.plist */,
 			);
-			path = "ToDo-UserDefaults";
+			path = "ToDo-Core Data";
 			sourceTree = "<group>";
 		};
 		A90F553B26BB85E400D3FBA1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A9B811ED26C5CF83006D89AB /* CategoryViewController.swift */,
 				A90F552B26BB856700D3FBA1 /* ToDoListViewController.swift */,
 			);
 			path = Controllers;
@@ -80,7 +83,7 @@
 		A90F553C26BB85EF00D3FBA1 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				A9FCBD1326BDD50F00A9F669 /* Item.swift */,
+				A9FCBD1926C1DFC100A9F669 /* DataModel.xcdatamodeld */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -105,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A90F552326BB856700D3FBA1 /* ToDo-UserDefaults */ = {
+		A90F552326BB856700D3FBA1 /* ToDo-Core Data */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A90F553826BB856800D3FBA1 /* Build configuration list for PBXNativeTarget "ToDo-UserDefaults" */;
+			buildConfigurationList = A90F553826BB856800D3FBA1 /* Build configuration list for PBXNativeTarget "ToDo-Core Data" */;
 			buildPhases = (
 				A90F552026BB856700D3FBA1 /* Sources */,
 				A90F552126BB856700D3FBA1 /* Frameworks */,
@@ -117,9 +120,9 @@
 			);
 			dependencies = (
 			);
-			name = "ToDo-UserDefaults";
+			name = "ToDo-Core Data";
 			productName = "ToDo-UserDefaults";
-			productReference = A90F552426BB856700D3FBA1 /* ToDo-UserDefaults.app */;
+			productReference = A90F552426BB856700D3FBA1 /* ToDo-Core Data.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -136,7 +139,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A90F551F26BB856700D3FBA1 /* Build configuration list for PBXProject "ToDo-UserDefaults" */;
+			buildConfigurationList = A90F551F26BB856700D3FBA1 /* Build configuration list for PBXProject "ToDo-Core Data" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -149,7 +152,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A90F552326BB856700D3FBA1 /* ToDo-UserDefaults */,
+				A90F552326BB856700D3FBA1 /* ToDo-Core Data */,
 			);
 		};
 /* End PBXProject section */
@@ -172,7 +175,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9FCBD1426BDD50F00A9F669 /* Item.swift in Sources */,
+				A9B811EE26C5CF83006D89AB /* CategoryViewController.swift in Sources */,
+				A9FCBD1B26C1DFC100A9F669 /* DataModel.xcdatamodeld in Sources */,
 				A90F552C26BB856700D3FBA1 /* ToDoListViewController.swift in Sources */,
 				A90F552826BB856700D3FBA1 /* AppDelegate.swift in Sources */,
 				A90F552A26BB856700D3FBA1 /* SceneDelegate.swift in Sources */,
@@ -324,12 +328,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T96J4T386J;
-				INFOPLIST_FILE = "ToDo-UserDefaults/Info.plist";
+				INFOPLIST_FILE = "ToDo-Core Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ballwebdev.ToDo-UserDefaults";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ballwebdev.ToDo-CoreData";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -343,12 +347,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T96J4T386J;
-				INFOPLIST_FILE = "ToDo-UserDefaults/Info.plist";
+				INFOPLIST_FILE = "ToDo-Core Data/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ballwebdev.ToDo-UserDefaults";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ballwebdev.ToDo-CoreData";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -358,7 +362,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A90F551F26BB856700D3FBA1 /* Build configuration list for PBXProject "ToDo-UserDefaults" */ = {
+		A90F551F26BB856700D3FBA1 /* Build configuration list for PBXProject "ToDo-Core Data" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A90F553626BB856800D3FBA1 /* Debug */,
@@ -367,7 +371,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A90F553826BB856800D3FBA1 /* Build configuration list for PBXNativeTarget "ToDo-UserDefaults" */ = {
+		A90F553826BB856800D3FBA1 /* Build configuration list for PBXNativeTarget "ToDo-Core Data" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A90F553926BB856800D3FBA1 /* Debug */,
@@ -377,6 +381,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A9FCBD1926C1DFC100A9F669 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A9FCBD1A26C1DFC100A9F669 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = A9FCBD1A26C1DFC100A9F669 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A90F551C26BB856700D3FBA1 /* Project object */;
 }

@@ -7,6 +7,8 @@
 
 import UIKit
 import CoreData
+import RealmSwift
+
 
 
 @main
@@ -15,8 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?;
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-
+        // Override point for customization after application launch
+        
+        // create a realm object and write the data
+        do {
+            let realm = try Realm();
+        } catch {
+            print("Error initializing: \(error)");
+        }
+        
+        
+        
         return true
     }
     

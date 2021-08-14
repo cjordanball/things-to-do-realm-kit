@@ -1,33 +1,34 @@
 //
 //  CategoryViewController.swift
-//  ToDo-Core Data
+//  ToDo-Realm
 //
 //  Created by C. Jordan Ball III on 8/12/21.
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class CategoryViewController: UITableViewController {
     
-    var categoryArray = Array<Category>();
+    let realm = try! Realm();
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext;
-
+    var categories: Results<Category>?
     override func viewDidLoad() {
         super.viewDidLoad();
+    
         loadCategories();
     }
 
     //Mark: - TableView DataSource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categoryArray.count;
+        return categories?.count ?? 1;
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath);
-        cell.textLabel?.text = categoryArray[indexPath.row].name;
+        
+        cell.textLabel?.text = categories?[indexPath.row].name.capitalized ?? "No Categories Added";
         return cell;
     }
     
@@ -35,16 +36,18 @@ class CategoryViewController: UITableViewController {
     //Mark: - Add New Categories
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        print("pressed");
+
         var textField = UITextField();
         
         let alert = UIAlertController(title: "Add Category", message: "Add a category in which to place items", preferredStyle: .alert);
         
         let action = UIAlertAction(title: "Add Category", style: .default) { action in
-            let newCategory = Category(context: self.context);
+            
+            let newCategory = Category();
             newCategory.name = textField.text!;
-            self.categoryArray.append(newCategory);
-            self.saveCategories();
+            
+            self.save(category: newCategory);
+
         }
         
         alert.addTextField { alertTextField in
@@ -65,12 +68,12 @@ class CategoryViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         let destinationVC = segue.destination as! ToDoListViewController;
 
         if let indexPath = tableView.indexPathForSelectedRow {
-            print(categoryArray[indexPath.row].name!);
-            destinationVC.selectedCategory = categoryArray[indexPath.row];
-            destinationVC.title = categoryArray[indexPath.row].name!.uppercased();
+            destinationVC.selectedCategory = categories?[indexPath.row];
+            destinationVC.title = categories?[indexPath.row].name.uppercased() ?? "";
         } else {
             print("Invalid row");
         }
@@ -78,22 +81,20 @@ class CategoryViewController: UITableViewController {
     
     //Mark: - Data Manipulation Methods
     
-    func saveCategories() {
+    func save(category: Category) {
         do {
-            try context.save();
+            try realm.write {
+                realm.add(category);
+            };
         } catch {
             print("Having a bad day \(error)");
         }
-        self.tableView.reloadData();
+        tableView.reloadData();
     }
     
-    func loadCategories(_ request: NSFetchRequest<Category> = Category.fetchRequest()) {
-        do {
-            categoryArray = try context.fetch(request).filter({ val in
-                val.name != "";
-            })
-        } catch {
-            print("ERR: \(error)");
-        }
+    func loadCategories() {
+        categories = realm.objects(Category.self);
+        
+        tableView.reloadData();
     }
 }

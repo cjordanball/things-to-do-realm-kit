@@ -47,16 +47,19 @@ class ToDoListViewController: UITableViewController {
         return cell;
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true);
-//
-//        let newVal = !itemArray[indexPath.row].done;
-//        itemArray[indexPath.row].setValue(newVal, forKey: "done");
-//        context.delete(itemArray[indexPath.row]);
-//        itemArray.remove(at: indexPath.row);
-
-//        saveItems();
-//    };
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let item = toDoItems?[indexPath.row] {
+            do {
+                try realm.write {
+                    item.done = !item.done;
+                }
+            } catch {
+                print("ERR: Can't update!");
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: true);
+        tableView.reloadData();
+    };
     
     @IBAction func addItemPressed(_ sender: UIBarButtonItem) {
         

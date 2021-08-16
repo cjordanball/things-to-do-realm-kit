@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
 class CategoryViewController: UITableViewController {
     
@@ -15,6 +16,8 @@ class CategoryViewController: UITableViewController {
     var categories: Results<Category>?
     override func viewDidLoad() {
         super.viewDidLoad();
+        
+        tableView.rowHeight = 80.0;
     
         loadCategories();
     }
@@ -26,12 +29,11 @@ class CategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath);
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! SwipeTableViewCell;
         cell.textLabel?.text = categories?[indexPath.row].name.capitalized ?? "No Categories Added";
+        cell.delegate = self;
         return cell;
     }
-    
     
     //Mark: - Add New Categories
     
@@ -61,7 +63,7 @@ class CategoryViewController: UITableViewController {
     }
     
     
-    //Mark: - TableView Delegate Methods
+    //MARK: - TableView Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToItems", sender: self)
@@ -79,7 +81,7 @@ class CategoryViewController: UITableViewController {
         }
     }
     
-    //Mark: - Data Manipulation Methods
+    //MARK: - Data Manipulation Methods
     
     func save(category: Category) {
         do {
@@ -96,5 +98,32 @@ class CategoryViewController: UITableViewController {
         categories = realm.objects(Category.self);
         
         tableView.reloadData();
+    }
+}
+
+    //MARK: - SwipeCell Delegate Methods
+
+extension CategoryViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil };
+        
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            
+            if let hotCat = self.categories?[indexPath.row] {
+                do {
+                    try self.realm.write {
+                        self.realm.delete(hotCat);
+                    }
+                } catch {
+                    print("ERR: Deleting");
+                }
+                tableView.reloadData();
+            }
+        }
+        
+        deleteAction.image = UIImage(named: "delete-icon");
+        print("Swipe Me!");
+        return [deleteAction];
     }
 }

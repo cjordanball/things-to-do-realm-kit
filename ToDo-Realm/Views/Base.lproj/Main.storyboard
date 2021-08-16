@@ -10,7 +10,7 @@
         <!--To-Do Items-->
         <scene sceneID="dJS-z9-MQ9">
             <objects>
-                <tableViewController id="P73-KE-DY7" customClass="ToDoListViewController" customModule="ToDo_Core_Data" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="P73-KE-DY7" customClass="ToDoListViewController" customModule="ToDo_Realm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wdA-ZS-bRl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,13 +76,13 @@
         <!--Categories-->
         <scene sceneID="URW-DN-cip">
             <objects>
-                <tableViewController id="x8y-QZ-sGg" customClass="CategoryViewController" customModule="ToDo_Core_Data" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="x8y-QZ-sGg" customClass="CategoryViewController" customModule="ToDo_Realm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zp9-91-MKt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="IGK-ix-MFY">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="IGK-ix-MFY" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IGK-ix-MFY" id="rMQ-Jm-hD1">

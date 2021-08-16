@@ -11,6 +11,7 @@ import RealmSwift
 class ToDoListViewController: UITableViewController {
     
     var toDoItems: Results<Item>?
+    var backUpItems: Results<Item>?
     let realm = try! Realm();
     
     var selectedCategory: Category? {
@@ -74,6 +75,7 @@ class ToDoListViewController: UITableViewController {
                     try self.realm.write {
                         let newItem = Item();
                         newItem.title = textField.text!;
+                        newItem.dateCreated = Date();
                         currentCategory.items.append(newItem);
                     }
                 } catch {
@@ -93,34 +95,42 @@ class ToDoListViewController: UITableViewController {
     }
     
     func loadItems() {
-        toDoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true);
+        toDoItems = selectedCategory?.items.sorted(byKeyPath: "dateCreated", ascending: false);
+        backUpItems = toDoItems;
 
         tableView.reloadData();
     }
 }
 
-//extension ToDoListViewController: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//
+extension ToDoListViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        if (searchBar.text! == "") {
+            loadItems();
+        } else {
+            toDoItems = backUpItems?.filter("title CONTAINS[c] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true);
+        }
+        tableView.reloadData();
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if (searchBar.text! == "") {
+            loadItems();
+        } else {
+            toDoItems = backUpItems?.filter("title CONTAINS[c] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true);
+        }
+        tableView.reloadData();
+        
+    }
+
 //        let request: NSFetchRequest<Item> = Item.fetchRequest();
 //
 //        let predicate = NSPredicate(format: "title CONTAINS[c] %@", searchBar.text!);
 //
 //        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)];
-//
-//        loadItems(with: request, searchPredicate: predicate);
-//
-//        tableView.reloadData();
-//    }
-//
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//
-//        let request: NSFetchRequest<Item> = Item.fetchRequest();
-//
-//        let predicate = NSPredicate(format: "title CONTAINS[c] %@", searchBar.text!);
-//
-//        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)];
-//
+
 //        if (searchBar.text! != "") {
 //            loadItems(with: request, searchPredicate: predicate);
 //        } else {
@@ -130,7 +140,5 @@ class ToDoListViewController: UITableViewController {
 //                searchBar.resignFirstResponder();
 //            }
 //        }
-//
-//        tableView.reloadData();
 //    }
-//}
+}

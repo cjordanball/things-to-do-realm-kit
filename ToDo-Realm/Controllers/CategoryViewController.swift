@@ -7,9 +7,8 @@
 
 import UIKit
 import RealmSwift
-import SwipeCellKit
 
-class CategoryViewController: UITableViewController {
+class CategoryViewController: Swiper {
     
     let realm = try! Realm();
     
@@ -29,9 +28,9 @@ class CategoryViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell") as! SwipeTableViewCell;
+        
+        let cell = super.tableView(tableView, cellForRowAt: indexPath);
         cell.textLabel?.text = categories?[indexPath.row].name.capitalized ?? "No Categories Added";
-        cell.delegate = self;
         return cell;
     }
     
@@ -99,31 +98,17 @@ class CategoryViewController: UITableViewController {
         
         tableView.reloadData();
     }
-}
-
-    //MARK: - SwipeCell Delegate Methods
-
-extension CategoryViewController: SwipeTableViewCellDelegate {
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil };
-        
-        let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            
-            if let hotCat = self.categories?[indexPath.row] {
-                do {
-                    try self.realm.write {
-                        self.realm.delete(hotCat);
-                    }
-                } catch {
-                    print("ERR: Deleting");
+    override func updateModel(at indexPath: IndexPath) {
+        if let hotCat = self.categories?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(hotCat);
                 }
-                tableView.reloadData();
+            } catch {
+                print("ERR: Deleting");
             }
         }
-        
-        deleteAction.image = UIImage(named: "delete-icon");
-        print("Swipe Me!");
-        return [deleteAction];
     }
 }
+

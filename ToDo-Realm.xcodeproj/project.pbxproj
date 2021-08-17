@@ -19,6 +19,7 @@
 		A9B49F2326C868EE006E645E /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B49F2226C868EE006E645E /* Item.swift */; };
 		A9B811EE26C5CF83006D89AB /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B811ED26C5CF83006D89AB /* CategoryViewController.swift */; };
 		A9DFFE3226C9F70F00F0D245 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9DFFE3126C9F70F00F0D245 /* SwipeCellKit */; };
+		A9DFFE5426CB177C00F0D245 /* Swiper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DFFE5326CB177C00F0D245 /* Swiper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		A9B49F2026C868E0006E645E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		A9B49F2226C868EE006E645E /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A9B811ED26C5CF83006D89AB /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		A9DFFE5326CB177C00F0D245 /* Swiper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swiper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				A9B811ED26C5CF83006D89AB /* CategoryViewController.swift */,
 				A90F552B26BB856700D3FBA1 /* ToDoListViewController.swift */,
+				A9DFFE5326CB177C00F0D245 /* Swiper.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				A9B811EE26C5CF83006D89AB /* CategoryViewController.swift in Sources */,
 				A90F552C26BB856700D3FBA1 /* ToDoListViewController.swift in Sources */,
 				A9B49F2326C868EE006E645E /* Item.swift in Sources */,
+				A9DFFE5426CB177C00F0D245 /* Swiper.swift in Sources */,
 				A90F552826BB856700D3FBA1 /* AppDelegate.swift in Sources */,
 				A90F552A26BB856700D3FBA1 /* SceneDelegate.swift in Sources */,
 				A9B49F2126C868E0006E645E /* Category.swift in Sources */,
